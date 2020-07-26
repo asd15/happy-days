@@ -50,7 +50,7 @@
             android:layout_marginEnd="@dimen/authentication_screen_marginStartEnd"
             android:elevation="@dimen/card_view_elevation"
             app:cardCornerRadius="@dimen/card_view_corner_radius"
-            app:cardBackgroundColor="@color/colorPrimaryDark">
+            app:cardBackgroundColor="@color/colorDark">
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -2,13 +2,14 @@
 <resources>
     <color name="colorPrimary">#EE3F00</color>
     <color name="colorPrimaryDark">#3E3E3E</color>
+    <color name="colorDark">#060707</color>
     <color name="colorAccent">#FF9D52</color>
     
     <color name="primary_text_color">#FF6B47</color>
     <color name="secondary_text_color">#FFFFFF</color>
     <color name="black_text_color">#000000</color>
 
-    <color name="dark_background_color">#2A2A2A</color>
+    <color name="dark_background_color">#1C1F20</color>
 
     <color name="snackbar_error_color">#E40000</color>
 </resources>

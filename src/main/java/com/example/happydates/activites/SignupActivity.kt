@@ -6,6 +6,8 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.example.happydates.R
+import com.example.happydates.firebase.FirestoreClass
+import com.example.happydates.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_signup.*
@@ -23,6 +25,13 @@ class SignupActivity : BaseActivity() {
 
         setupActionBar()
     }
+
+    fun userRegisteredSuccess(){
+        Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show()
+        FirebaseAuth.getInstance().signOut()
+        finish()
+    }
+
     private fun setupActionBar(){
         setSupportActionBar(toolbar_sign_up_activity)
 
@@ -49,13 +58,8 @@ class SignupActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
                         val registeredEmail = firebaseUser.email!!
-                        Toast.makeText(
-                            this,
-                            "$name you have" + "email $registeredEmail",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        FirebaseAuth.getInstance().signOut()
-                        finish()
+                        val user = User(firebaseUser.uid, name, registeredEmail)
+                        FirestoreClass().registerUser(this, user)
                     } else {
                         Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
                     }
