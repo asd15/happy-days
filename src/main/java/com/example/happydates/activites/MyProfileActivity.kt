@@ -22,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import java.io.IOException
 
 class MyProfileActivity : BaseActivity() {
 
@@ -89,6 +90,17 @@ class MyProfileActivity : BaseActivity() {
             && requestCode == PICK_IMAGE_REQUEST_CODE
             && data!!.data != null){
             mSelectedImageUri = data.data
+
+            try {
+                Glide
+                    .with(this@MyProfileActivity)
+                    .load(Uri.parse(mSelectedImageUri.toString()))
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_user_place_holder)
+                    .into(iv_edit_user_image)
+            }catch (e: IOException){
+                e.printStackTrace()
+            }
         }
     }
 
@@ -164,6 +176,7 @@ class MyProfileActivity : BaseActivity() {
     }
 
     fun profileUpdateSuccess(){
+        setResult(Activity.RESULT_OK)
         finish()
     }
 }
